@@ -55,8 +55,6 @@ function newGame() {
     playerScore = 0;
     computerScore = 0;
     whichRound = 1;
-    game()
-
 }
 
 // This following loop and functions will run the game for a defined number of cycles/games

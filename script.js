@@ -45,9 +45,18 @@ function game() {
     let computerSelection = getComputerChoice(choice);
     console.log("Computer chose: " + computerSelection);
 
-    console.log(playRound(playerSelection, computerSelection));
-    
-    
+    console.log(playRound(playerSelection, computerSelection));    
+}
+
+
+//This function will enable player to restart the game after the game has finished
+function newGame() {
+    let playerRestart = confirm("Do you wish to play another game?")
+    playerScore = 0;
+    computerScore = 0;
+    whichRound = 1;
+    game()
+
 }
 
 // This following loop and functions will run the game for a defined number of cycles/games
@@ -69,3 +78,7 @@ for (let i = 1; i <= 5; i++) {
     else {
         console.log("Something went wrong! Sorry.")
     }
+
+    newGame();
+
+

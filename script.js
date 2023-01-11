@@ -18,22 +18,35 @@ let whichRound = 1;
 // This function finds the result of one game and returns the result, round number and new score
 function playRound(playerSelection, computerSelection) {
     if ((playerSelection === choice[0]) && (computerSelection === choice[1])) {
-        return `You loose! ${choice[1]} beats ${choice[0]}. After round ${whichRound}, the score is computer ${++computerScore} : ${playerScore} player`;
+        return `You loose! ${choice[1]} beats ${choice[0]}.
+            After round ${whichRound},
+            the score is computer ${++computerScore} : ${playerScore} player`;
     }
     else if ((playerSelection === choice[1]) && (computerSelection === choice[2])) {
-        return `You loose! ${choice[2]} beats ${choice[1]}. After round ${whichRound}, the score is computer ${++computerScore} : ${playerScore} player`;
+        return `You loose! ${choice[2]} beats ${choice[1]}.
+            After round ${whichRound},
+            the score is computer ${++computerScore} : ${playerScore} player`;
     }
     else if ((playerSelection === choice[2]) && (computerSelection === choice[0])) {
-        return `You loose! ${choice[0]} beats ${choice[2]}. After round ${whichRound}, the score is computer ${++computerScore} : ${playerScore} player`;
+        return `You loose! ${choice[0]} beats ${choice[2]}.
+            After round ${whichRound},
+            the score is computer ${++computerScore} : ${playerScore} player`;
     }
     else if (playerSelection === computerSelection) {
-        return `It is a tie! Try again. After round ${whichRound}, the score is computer ${computerScore} : ${playerScore} player`;
+        return `It is a tie! Try again.
+            After round ${whichRound},
+            the score is computer ${computerScore} : ${playerScore} player`;
     }
-    else if ((playerSelection !== choice[0]) && (playerSelection !== choice[1]) && (playerSelection !== choice[2])) {
-        return `You misspelled your choice. Please try again. After round ${whichRound}, the score is computer ${computerScore} : ${playerScore} player`;
+    else if ((playerSelection !== choice[0]) && (playerSelection !== choice[1]) &&
+        (playerSelection !== choice[2])) {
+        return `You misspelled your choice.
+            Please try again. After round ${whichRound},
+            the score is computer ${computerScore} : ${playerScore} player`;
     }
     else {
-        return `You win! ${playerSelection} beats ${computerSelection}. After round ${whichRound}, the score is computer ${computerScore} : ${++playerScore} player`;
+        return `You win! ${playerSelection} beats ${computerSelection}.
+            After round ${whichRound},
+            the score is computer ${computerScore} : ${++playerScore} player`;
     }
 }
 
@@ -50,12 +63,13 @@ function game() {
 
 
 //This function will enable player to restart the game after the game has finished
-function newGame() {
+/*function newGame() {
     let playerRestart = confirm("Do you wish to play another game?")
     playerScore = 0;
     computerScore = 0;
     whichRound = 1;
 }
+*/
 
 // This following loop and functions will run the game for a defined number of cycles/games
 for (let i = 1; i <= 5; i++) {
@@ -77,6 +91,6 @@ for (let i = 1; i <= 5; i++) {
         console.log("Something went wrong! Sorry.")
     }
 
-    newGame();
+    //newGame();
 
 

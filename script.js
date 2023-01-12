@@ -1,5 +1,5 @@
 
-//Create the three choice options as an array and store in a variable
+// Create the three choice options as an array and store in a variable
 const choice = ["rock", "paper", "scissors"];
 
 
@@ -19,64 +19,66 @@ let whichRound = 1;
 function playRound(playerSelection, computerSelection) {
     if ((playerSelection === choice[0]) && (computerSelection === choice[1])) {
         return `You loose! ${choice[1]} beats ${choice[0]}.
-            After round ${whichRound},
-            the score is computer ${++computerScore} : ${playerScore} player`;
+        After round ${whichRound},
+        the score is computer ${++computerScore} : ${playerScore} player`;
     }
     else if ((playerSelection === choice[1]) && (computerSelection === choice[2])) {
         return `You loose! ${choice[2]} beats ${choice[1]}.
-            After round ${whichRound},
-            the score is computer ${++computerScore} : ${playerScore} player`;
+        After round ${whichRound},
+        the score is computer ${++computerScore} : ${playerScore} player`;
     }
     else if ((playerSelection === choice[2]) && (computerSelection === choice[0])) {
         return `You loose! ${choice[0]} beats ${choice[2]}.
-            After round ${whichRound},
-            the score is computer ${++computerScore} : ${playerScore} player`;
+        After round ${whichRound},
+        the score is computer ${++computerScore} : ${playerScore} player`;
     }
     else if (playerSelection === computerSelection) {
         return `It is a tie! Try again.
-            After round ${whichRound},
-            the score is computer ${computerScore} : ${playerScore} player`;
+        After round ${whichRound},
+        the score is computer ${computerScore} : ${playerScore} player`;
     }
     else if ((playerSelection !== choice[0]) && (playerSelection !== choice[1]) &&
         (playerSelection !== choice[2])) {
         return `You misspelled your choice.
-            Please try again. After round ${whichRound},
-            the score is computer ${computerScore} : ${playerScore} player`;
+        Please try again. After round ${whichRound},
+        the score is computer ${computerScore} : ${playerScore} player`;
     }
     else {
         return `You win! ${playerSelection} beats ${computerSelection}.
-            After round ${whichRound},
-            the score is computer ${computerScore} : ${++playerScore} player`;
+        After round ${whichRound},
+        the score is computer ${computerScore} : ${++playerScore} player`;
     }
 }
 
-// This function calls the playRound function and handles player- and computer choice
-function game() {
-    let playerSelection = prompt("Choose \"rock\", \"paper\" or \"scissors\"").toLowerCase();
-    console.log("Player chose: " + playerSelection);
-
-    let computerSelection = getComputerChoice(choice);
-    console.log("Computer chose: " + computerSelection);
-
-    console.log(playRound(playerSelection, computerSelection));    
-}
 
 
-//This function will enable player to restart the game after the game has finished
-/*function newGame() {
-    let playerRestart = confirm("Do you wish to play another game?")
+
+// This function will enable player to play a new game after the game has finished
+function newGame() {
+    let playerRestart = confirm("Do you wish to play another game?");
     playerScore = 0;
     computerScore = 0;
     whichRound = 1;
-}
-*/
-
-// This following loop and functions will run the game for a defined number of cycles/games
-for (let i = 1; i <= 5; i++) {
     game();
-    console.log("This is whichRound: " + whichRound++);
-    console.log("This is i: " + i);
-}    
+}
+
+
+// This function drives a loop to create a number of games with the choices 
+// and result. It also calls the function which keeps track of score and declares
+// a final winner
+function game() {
+    for (let i = 1; i <= 5; i++) {
+        let playerSelection = prompt("Choose \"rock\", \"paper\" or \"scissors\"").toLowerCase();
+        console.log("Player chose: " + playerSelection);
+
+        let computerSelection = getComputerChoice(choice);
+        console.log("Computer chose: " + computerSelection);
+        
+        console.log(playRound(playerSelection, computerSelection));
+
+        console.log("This is whichRound: " + whichRound++);
+        console.log("This is i: " + i);
+    }    
 
     if ((computerScore > playerScore)) {
         console.log("Sorry, the computer won :-(")
@@ -90,7 +92,9 @@ for (let i = 1; i <= 5; i++) {
     else {
         console.log("Something went wrong! Sorry.")
     }
+}
 
-    //newGame();
+game(); // run game
+newGame(); // run a new game
 
 

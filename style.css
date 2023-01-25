@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    color: rgba(248, 249, 250, 1)
+    
+}
+
+body {
+    font-family: 'Permanent Marker', 'Courier New', Courier, monospace;
+    background-color: rgba(32, 33, 36, 1);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+
+}
+
+.header-text {
+    font-size: 3rem;
+}
+
+.content-box {
+    background-color: rgba(60 ,64, 67, .7);
+    border-radius: 1rem;
+    box-shadow: 0 0 15px 0px rgba(232, 234, 237, 1);
+    width: 40rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#score-text {
+    display: flex;
+}
+
+#score-board {
+    display: flex;
+}
+
+#player-ui {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#play-box {
+    
+}
+
+#rule-box {
+
+}

@@ -5,14 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Rock Paper Scissors!</title>
+    <link rel="stylesheet" href="./style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <!-- <script src="./script.js" defer></script> -->
 </head>
 <body>
+    <div class="header-text">
+        Rock Paper Scissors
+    </div>
+
+    <div class="content-box" id="play-box">
+        <div class="text-primary" id="content-box-header">First to "five" wins</div>
+        <div class="text-secondary" id="score-text">
+            <div class="text-secondary" id="player-win">Winner!</div>
+            <div class="text secondary">Score</div>
+            <div class="text-secondary" id="computer-win">Winner!</div>
+        </div>
+        <div class="text-primary" id="score-board">
+            <div class="show-winner">Player</div>
+            <div id="player-score">"0"</div>
+            <div>:</div>
+            <div id="computer-score">"0"</div>
+            <div class="show-winner">Computer</div>
+        </div>
+        <div class="text-secondary" id="round-counter">Round "1"</div>
+        <div class="text-primary choice-content">
+            <div id="player-ui">
+                <div id="player-choice">"player choice"</div>
+                <button class="btn" id="btn-rock">Rock</button>
+                <button class="btn" id="btn-paper">Paper</button>
+                <button class="btn" id="btn-scissors">Scissors</button>
+            </div>
+            <div id="round-winner">"x wins"</div>
+            <div id="computer-choice">"computer choice"</div>
+        </div>
+    <button class="btn" id="btn-restart">Restart game</button>
+    </div>
+
+    <div class="content-box id" id="rule-box">
+        <div class="text-primary" id="rule-box-header">How to play</div>
+        <ul>
+            <li class="text-secondary">Use "Rock", "Paper" or "Scissors" button to make a player choice</li>
+            <li class="text-secondary">The computer will automatically choose when you have made your choice</li>
+            <li class="text-secondary">The game will show you who won the round and will declare a winner of the game in the end</li>
+            <li class="text-secondary">Rock beats scissors, paper beats rock, scissors beats paper</li>
+        </ul>
+
+
+    </div>
+
+    <p>Created by <a href="https://github.com/rasmushaislund">Rasmus H.</a></p>
 
 
 
 
 
-
-    <script src="./script.js"></script>
+    
 </body>
 </html>

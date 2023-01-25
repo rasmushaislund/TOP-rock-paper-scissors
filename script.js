@@ -13,40 +13,35 @@ function getComputerChoice(choice) {
 let playerScore = 0;
 let computerScore = 0;
 let whichRound = 1;
+let pointsForWin = 5;
 
 
 // This function finds the result of one game and returns the result, round number and new score
 function playRound(playerSelection, computerSelection) {
     if ((playerSelection === choice[0]) && (computerSelection === choice[1])) {
-        return `You loose! ${choice[1]} beats ${choice[0]}.
-        After round ${whichRound},
-        the score is computer ${++computerScore} : ${playerScore} player`;
+        computerScore++;
+        return `You loose! ${choice[1]} beats ${choice[0]}.`;
     }
     else if ((playerSelection === choice[1]) && (computerSelection === choice[2])) {
-        return `You loose! ${choice[2]} beats ${choice[1]}.
-        After round ${whichRound},
-        the score is computer ${++computerScore} : ${playerScore} player`;
+        computerScore++;
+        return `You loose! ${choice[2]} beats ${choice[1]}.`;
     }
     else if ((playerSelection === choice[2]) && (computerSelection === choice[0])) {
-        return `You loose! ${choice[0]} beats ${choice[2]}.
-        After round ${whichRound},
-        the score is computer ${++computerScore} : ${playerScore} player`;
+        computerScore++;
+        return `You loose! ${choice[0]} beats ${choice[2]}.`;
     }
     else if (playerSelection === computerSelection) {
-        return `It is a tie! Try again.
-        After round ${whichRound},
-        the score is computer ${computerScore} : ${playerScore} player`;
+        return `It is a tie! Try again.`;
     }
-    else if ((playerSelection !== choice[0]) && (playerSelection !== choice[1]) &&
+    /*else if ((playerSelection !== choice[0]) && (playerSelection !== choice[1]) &&
         (playerSelection !== choice[2])) {
         return `You misspelled your choice.
         Please try again. After round ${whichRound},
         the score is computer ${computerScore} : ${playerScore} player`;
-    }
+    } */
     else {
-        return `You win! ${playerSelection} beats ${computerSelection}.
-        After round ${whichRound},
-        the score is computer ${computerScore} : ${++playerScore} player`;
+        playerScore++;
+        return `You win! ${playerSelection} beats ${computerSelection}.`;
     }
 }
 
@@ -67,7 +62,6 @@ function newGame() {
 // and result. It also calls the function which keeps track of score and declares
 // a final winner
 function game() {
-    for (let i = 1; i <= 5; i++) {
         let playerSelection = prompt("Choose \"rock\", \"paper\" or \"scissors\"").toLowerCase();
         console.log("Player chose: " + playerSelection);
 
@@ -75,22 +69,15 @@ function game() {
         console.log("Computer chose: " + computerSelection);
         
         console.log(playRound(playerSelection, computerSelection));
-
         console.log("This is whichRound: " + whichRound++);
-        console.log("This is i: " + i);
-    }    
+        console.log(playerScore);
+        console.log(computerScore);
 
-    if ((computerScore > playerScore)) {
+    if ((computerScore === pointsForWin)) {
         console.log("Sorry, the computer won :-(")
     }
-    else if ((computerScore < playerScore)) {
+    else if ((playerScore === pointsForWin)) {
         console.log("Congratulations! You won the game.")
-    }
-    else if ((computerScore === playerScore)) {
-        console.log("It is a tie. Nobody won the game")
-    }
-    else {
-        console.log("Something went wrong! Sorry.")
     }
 }
 

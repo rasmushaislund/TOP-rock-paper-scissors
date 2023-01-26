@@ -1,10 +1,39 @@
 
-document.getElementsByTagName("body").onload = newGame();
-
+document.getElementsByTagName("body").onload = newGame(); // Call newGame() when page loads
 
 
 // Create the three choice options as an array and store in a variable
 const choice = ["rock", "paper", "scissors"];
+
+// Variables for targeting buttons
+let btnRock = document.querySelector("#btn-rock");
+let btnPaper = document.querySelector("#btn-paper");
+let btnScissors = document.querySelector("#btn-scissors");
+let btnNewGame = document.querySelector("#btn-restart");
+
+// Variables for targeting dynamic texts
+let roundWinner = document.querySelector("#round-winner");
+let playerChoice = document.querySelector("#choice-player");
+let computerChoice = document.querySelector("choice-computer");
+
+// Variables for score and round no. div's
+let showPointsToWin = document.querySelector("#play-box-header-points");
+let showPlayerScore = document.querySelector(".score-player");
+let showComputerScore = document.querySelector(".score-computer");
+let showRoundNumber = document.querySelector("#round-counter-no");
+
+// Variables used for signaling the final winner of the game
+let playerBorderWin = document.querySelector(".show-winner-player");
+let computerBorderWin = document.querySelector(".show-winner-computer");
+let playerTextWin = document.querySelector("#player-win");
+let computerTextWin = document.querySelector("#computer-win");
+
+// Variables to store score, round no. and needed points for winning
+let playerScore = 0;
+let computerScore = 0;
+let whichRound = 1;
+let pointsForWin = 5;
+
 
 
 // Function randomly chooses one of the three options from array and returns the choice
@@ -12,38 +41,46 @@ function getComputerChoice(choice) {
     return choice[Math.floor(Math.random()*choice.length)];
 };
 
+let computerSelection = getComputerChoice(choice);
 
-// These variables will store the current score for player and computer and 
-// keep track of current round no. and how many point needed to win the game
+// Button event listeners
+btnRock.addEventListener("click", playRound(choice[0], computerSelection));
+btnPaper.addEventListener("click", playRound(choice[1], computerSelection));
+btnScissors.addEventListener("click", playRound(choice[2], computerSelection))
+btnNewGame.addEventListener("click", newGame());
 
 
 
 // This function finds the result of one game and returns the result, round number and new score
 function playRound(playerSelection, computerSelection) {
     if ((playerSelection === choice[0]) && (computerSelection === choice[1])) {
+        playerChoice.textContent = choice[0];
+        computerChoice.textContent = choice[1];
+        roundWinner.textContent = `You loose! ${choice[1]} beats ${choice[0]}.`;
         computerScore++;
-        return `You loose! ${choice[1]} beats ${choice[0]}.`;
     }
     else if ((playerSelection === choice[1]) && (computerSelection === choice[2])) {
+        playerChoice.textContent = choice[1];
+        computerChoice.textContent = choice[2];
+        roundWinner.textContent = `You loose! ${choice[2]} beats ${choice[1]}.`;
         computerScore++;
-        return `You loose! ${choice[2]} beats ${choice[1]}.`;
     }
     else if ((playerSelection === choice[2]) && (computerSelection === choice[0])) {
+        playerChoice.textContent = choice[2];
+        computerChoice.textContent = choice[0];
+        roundWinner.textContent = `You loose! ${choice[0]} beats ${choice[2]}.`;
         computerScore++;
-        return `You loose! ${choice[0]} beats ${choice[2]}.`;
     }
     else if (playerSelection === computerSelection) {
-        return `It is a tie! Try again.`;
+        playerChoice.textContent = playerSelection;
+        computerChoice.textContent = computerSelection;
+        roundWinner.textContent = `It is a tie! Try again.`;
     }
-    /*else if ((playerSelection !== choice[0]) && (playerSelection !== choice[1]) &&
-        (playerSelection !== choice[2])) {
-        return `You misspelled your choice.
-        Please try again. After round ${whichRound},
-        the score is computer ${computerScore} : ${playerScore} player`;
-    } */
     else {
+        playerChoice.textContent = playerSelection;
+        computerChoice.textContent = computerSelection;
+        roundWinner.textContent = `You win! ${playerSelection} beats ${computerSelection}.`;
         playerScore++;
-        return `You win! ${playerSelection} beats ${computerSelection}.`;
     }
 }
 
@@ -53,48 +90,44 @@ function playRound(playerSelection, computerSelection) {
 // This function will restart the game when the page is loaded
 // and it will enable the player to restart a game anytime
 function newGame() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let whichRound = 1;
-    let pointsForWin = 5;
-    document.querySelector("#play-box-header-points").textContent = pointsForWin;
-    document.querySelector(".score-player").textContent = playerScore;
-    document.querySelector(".score-computer").textContent = computerScore;
-    document.querySelector("#round-counter-no").textContent = whichRound;
-    document.querySelector("#choice-player").textContent = "";
-    document.querySelector("#choice-computer").textContent = "";
-    document.querySelector(".show-winner-player").style.border = "none";
-    document.querySelector(".show-winner-computer").style.border = "none";
-    document.querySelector("#player-win").textContent = "";
-    document.querySelector("#computer-win").textContent = "";
+    showPointsToWin.textContent = pointsForWin;
+    showPlayerScore.textContent = playerScore;
+    showComputerScore.textContent = computerScore;
+    showRoundNumber.textContent = whichRound;
+    playerChoice.textContent = "";
+    computerChoice.textContent = "";
+    playerBorderWin.style.border = "none";
+    computerBorderWin.style.border = "none";
+    playerTextWin.textContent = "";
+    computerTextWin.textContent = "";
+    roundWinner.textContent = "";
     
-    game();
+    game(); // start game
 }
 
 
-// This function drives a loop to create a number of games with the choices 
-// and result. It also calls the function which keeps track of score and declares
-// a final winner
-function game() {
-        console.log("Player chose: " + playerSelection);
 
-        let computerSelection = getComputerChoice(choice);
-        console.log("Computer chose: " + computerSelection);
-        
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("This is whichRound: " + whichRound++);
-        console.log(playerScore);
-        console.log(computerScore);
+
+// 
+function game() {
+    playerChoice.textContent = "";
+    computerChoice.textContent = "";
+    roundWinner.textContent = "";
+    playRound(playerSelection, computerSelection);
+    showRoundNumber = whichRound++;
+    showPlayerScore.textContent = playerScore;
+    showComputerScore.textContent = computerScore;
 
     if ((computerScore === pointsForWin)) {
-        console.log("Sorry, the computer won :-(")
+        computerBorderWin;
+        computerTextWin;
     }
     else if ((playerScore === pointsForWin)) {
-        console.log("Congratulations! You won the game.")
+        playerBorderWin;
+        playerTextWin;
     }
 }
 
 game(); // run game
-newGame(); // run a new game
 
 

@@ -32,6 +32,21 @@ body {
     flex: 1, 1;
 }
 
+#content-box-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+#play-box-header-points {
+    font-family: 'Orbitron', 'Permanent Marker', 'Courier New', Courier, monospace;
+    padding: .1rem .2rem .1rem .2rem;
+    border-radius: .5rem;
+    background-color: rgba(201, 218, 241, .2);
+}
+
 #score-text {
     display: flex;
     justify-content: space-around;
@@ -40,12 +55,21 @@ body {
 #score-board {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    column-gap: 2rem;
 }
 
 .show-winner {
     border: .2rem solid rgba(90, 211, 140, 1);
     border-radius: .5rem;
     padding: 0rem .5rem 0rem .5rem;
+}
+
+.score {
+    font-family: 'Orbitron', 'Permanent Marker', 'Courier New', Courier, monospace;
+    padding: .1rem .2rem .1rem .2rem;
+    border-radius: .5rem;
+    background-color: rgba(201, 218, 241, .2);
 }
 
 #round-counter {
@@ -82,7 +106,7 @@ body {
     max-width: 7rem;
     border-radius: .5rem;
     box-shadow: 0 0 2px 0 rgba(232, 234, 237, 1);
-    background-color: rgba(248, 249, 250, 1);
+    background-color: rgba(242, 139, 130, 1);
 }
 
 .btn:hover {
@@ -103,13 +127,6 @@ body {
 
 .text-secondary {
     color: rgba(154, 160, 166, 1);
-}
-
-
-
-#play-box-header {
-    text-align: center;
-    margin-bottom: 1rem;
 }
 
 #rule-box-header {

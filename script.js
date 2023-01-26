@@ -1,4 +1,8 @@
 
+document.getElementsByTagName("body").onload = newGame();
+
+
+
 // Create the three choice options as an array and store in a variable
 const choice = ["rock", "paper", "scissors"];
 
@@ -9,11 +13,9 @@ function getComputerChoice(choice) {
 };
 
 
-// These variables will store the current score for player and computer and keep track of how many rounds have been played
-let playerScore = 0;
-let computerScore = 0;
-let whichRound = 1;
-let pointsForWin = 5;
+// These variables will store the current score for player and computer and 
+// keep track of current round no. and how many point needed to win the game
+
 
 
 // This function finds the result of one game and returns the result, round number and new score
@@ -48,12 +50,24 @@ function playRound(playerSelection, computerSelection) {
 
 
 
-// This function will enable player to play a new game after the game has finished
+// This function will restart the game when the page is loaded
+// and it will enable the player to restart a game anytime
 function newGame() {
-    let playerRestart = confirm("Do you wish to play another game?");
-    playerScore = 0;
-    computerScore = 0;
-    whichRound = 1;
+    let playerScore = 0;
+    let computerScore = 0;
+    let whichRound = 1;
+    let pointsForWin = 5;
+    document.querySelector("#play-box-header-points").textContent = pointsForWin;
+    document.querySelector(".score-player").textContent = playerScore;
+    document.querySelector(".score-computer").textContent = computerScore;
+    document.querySelector("#round-counter-no").textContent = whichRound;
+    document.querySelector("#choice-player").textContent = "";
+    document.querySelector("#choice-computer").textContent = "";
+    document.querySelector(".show-winner-player").style.border = "none";
+    document.querySelector(".show-winner-computer").style.border = "none";
+    document.querySelector("#player-win").textContent = "";
+    document.querySelector("#computer-win").textContent = "";
+    
     game();
 }
 
@@ -62,7 +76,6 @@ function newGame() {
 // and result. It also calls the function which keeps track of score and declares
 // a final winner
 function game() {
-        let playerSelection = prompt("Choose \"rock\", \"paper\" or \"scissors\"").toLowerCase();
         console.log("Player chose: " + playerSelection);
 
         let computerSelection = getComputerChoice(choice);

@@ -1,6 +1,4 @@
 
-document.getElementsByTagName("body").onload = newGame(); // Call newGame() when page loads
-
 
 // Create the three choice options as an array and store in a variable
 const choice = ["rock", "paper", "scissors"];
@@ -14,7 +12,7 @@ let btnNewGame = document.querySelector("#btn-restart");
 // Variables for targeting dynamic texts
 let roundWinner = document.querySelector("#round-winner");
 let playerChoice = document.querySelector("#choice-player");
-let computerChoice = document.querySelector("choice-computer");
+let computerChoice = document.querySelector("#choice-computer");
 
 // Variables for score and round no. div's
 let showPointsToWin = document.querySelector("#play-box-header-points");
@@ -34,22 +32,19 @@ let computerScore = 0;
 let whichRound = 1;
 let pointsForWin = 5;
 
-
+// Reset game UI upon page load/reload
+document.getElementsByTagName("body").onload = newGame(); // Call newGame() when page (re)loads
 
 // Function randomly chooses one of the three options from array and returns the choice
 function getComputerChoice(choice) {
     return choice[Math.floor(Math.random()*choice.length)];
 };
 
-let computerSelection = getComputerChoice(choice);
-
 // Button event listeners
-btnRock.addEventListener("click", playRound(choice[0], computerSelection));
-btnPaper.addEventListener("click", playRound(choice[1], computerSelection));
-btnScissors.addEventListener("click", playRound(choice[2], computerSelection))
-btnNewGame.addEventListener("click", newGame());
-
-
+btnRock.addEventListener("click", function () {playRound(choice[0], getComputerChoice(choice))});
+btnPaper.addEventListener("click", function () {playRound(choice[1], getComputerChoice(choice))});
+btnScissors.addEventListener("click", function () {playRound(choice[2], getComputerChoice(choice))});
+btnNewGame.addEventListener("click", newGame);
 
 // This function finds the result of one game and returns the result, round number and new score
 function playRound(playerSelection, computerSelection) {
@@ -82,14 +77,16 @@ function playRound(playerSelection, computerSelection) {
         roundWinner.textContent = `You win! ${playerSelection} beats ${computerSelection}.`;
         playerScore++;
     }
+    game();
+    whichRound++;
 }
-
-
-
 
 // This function will restart the game when the page is loaded
 // and it will enable the player to restart a game anytime
 function newGame() {
+    playerScore = 0;
+    computerScore = 0;
+    whichRound = 1;    
     showPointsToWin.textContent = pointsForWin;
     showPlayerScore.textContent = playerScore;
     showComputerScore.textContent = computerScore;
@@ -101,33 +98,30 @@ function newGame() {
     playerTextWin.textContent = "";
     computerTextWin.textContent = "";
     roundWinner.textContent = "";
-    
-    game(); // start game
+    btnRock.disabled = false;
+    btnPaper.disabled = false;
+    btnScissors.disabled = false; 
 }
 
 
-
-
-// 
+// Main function for playing a round and make output to scoreboards etc.
 function game() {
-    playerChoice.textContent = "";
-    computerChoice.textContent = "";
-    roundWinner.textContent = "";
-    playRound(playerSelection, computerSelection);
-    showRoundNumber = whichRound++;
+    showRoundNumber.textContent = whichRound;
     showPlayerScore.textContent = playerScore;
     showComputerScore.textContent = computerScore;
 
     if ((computerScore === pointsForWin)) {
-        computerBorderWin;
-        computerTextWin;
+        computerBorderWin.setAttribute("style", "border: .2rem solid rgba(90, 211, 140, 1); border-radius: .5rem");
+        computerTextWin.textContent = "Winner!";
+        btnRock.disabled = true;
+        btnPaper.disabled = true;
+        btnScissors.disabled = true;
     }
     else if ((playerScore === pointsForWin)) {
-        playerBorderWin;
-        playerTextWin;
+        playerBorderWin.setAttribute("style", "border: .2rem solid rgba(90, 211, 140, 1); border-radius: .5rem");
+        playerTextWin.textContent = "Winner!";
+        btnRock.disabled = true;
+        btnPaper.disabled = true;
+        btnScissors.disabled = true;
     }
 }
-
-game(); // run game
-
-
